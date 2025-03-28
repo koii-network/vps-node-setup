@@ -1,48 +1,120 @@
-# koii-vps
+# Koii VPS Node Setup Script
 
-# Hardware requirements
-Minimal Setup: A system with a 1+ GHz processor, 2 GB of RAM, and 10 GB of SSD storage meets the minimum requirements. Ensure a stable internet connection and use a 64-bit Linux distribution like Ubuntu 24.04 LTS for running the Koii Node.
+## Project Overview
 
-Recommended Setup: For running multiple tasks, it's recommended to use a system with a 2+ GHz multi-core processor, 8 GB of RAM, and 30 GB of SSD storage. Ensure a stable internet connection with at least 10 Mbps upload/download speeds, and use a 64-bit Linux distribution like Ubuntu 24.04 LTS for optimal performance.
+This repository provides a comprehensive setup script for running a Koii Network Node on a Virtual Private Server (VPS). The script automates the process of preparing a Linux environment to run a Koii task node, including system updates, Docker installation, Node.js setup, and Koii CLI configuration.
 
-# Important this script is still being worked on, it doesn't work flawlessly. You will need to do some steps manually and restart the terminal.
+The Koii Network is a decentralized computing platform that allows users to run tasks and earn rewards by contributing computational resources. This script simplifies the node deployment process for developers and network participants.
 
-# To run Koii Node on a VPS overview
+## Hardware Requirements
 
-0. Have a VPS that has enough memory + cpu
-1. SSH into your vps 
-2. Clone this repo
-3. cd into folder
-4. Make script executable and run it.
-    ```
-    chmod +x setupServer.sh
-    ./setupServer.sh
-    ```
-5. Read through the script comments first to understand what will happen.
-6. Follow along with script
-7. Do manual steps and rerun the script at certain points. 
-8. Check that it's running 
-9. Enjoy!
+### Minimal Setup
+- Processor: 1+ GHz 
+- RAM: 2 GB
+- Storage: 10 GB SSD
+- OS: 64-bit Linux (Ubuntu 24.04 LTS recommended)
+- Network: Stable internet connection
 
-# Steps you need to do, prompted in script:
-1. When koii-cli is installed it will ask you if you updated the path, just copy the line starting with PATH that is printed in your terminal and paste it in. Then rerun the script.
-    ```
-    EXAMPLE - Please use what is in your terminal
-    Please update your PATH environment variable to include the koii programs:
-        PATH="/home/ubuntu/.local/share/koii/install/active_release/bin:$PATH"
-    ```
-2. When the public key and seed phrase are printed, save them you'll need them later. 
-3. When prompted: "Please take a moment to fill your new wallet with enough koii to run the tasks." You need to copy the public key and use Finnie to fund your wallet before the next step.
+### Recommended Setup
+- Processor: 2+ GHz multi-core
+- RAM: 8 GB
+- Storage: 30 GB SSD
+- Network: 10+ Mbps upload/download speeds
+- OS: 64-bit Linux (Ubuntu 24.04 LTS)
 
+## Getting Started
 
-# If you have problem:
-1. Check that you did manual steps correctly
-3. With docker install and koii cli install after updating path variables you may need to restart the terminal. 
+### Prerequisites
+- A VPS running Ubuntu 24.04 LTS
+- SSH access to the VPS
+- Basic command-line knowledge
 
-# To claim rewards etc:
-https://www.koii.network/docs/develop/command-line-tool/create-task-cli/install
-```npx @_koii/create-task-cli@latest```
+### Installation Steps
 
-Only commands you'll need:
-1.Claim Reward (If you have rewards)
-2.Withdraw Staked Funds from Task (If you don't want to run the task anymore)
+1. SSH into your VPS
+2. Clone this repository
+   ```bash
+   git clone <repository-url>
+   cd koii-vps
+   ```
+
+3. Make the setup script executable
+   ```bash
+   chmod +x setupServer.sh
+   ```
+
+4. Run the setup script
+   ```bash
+   ./setupServer.sh
+   ```
+
+## Features / Capabilities
+
+The setup script provides the following key functions:
+- System update and upgrade
+- Docker and Docker Compose installation
+- Node.js (via nvm) installation
+- Koii CLI installation
+- Automatic Koii wallet creation
+- Docker-based Koii task node deployment
+
+## Project Structure
+
+- `setupServer.sh`: Main installation and configuration script
+- `docker-compose.yaml`: Docker Compose configuration for the Koii task node
+- `.env-local`: Environment configuration file
+- `README.md`: Project documentation
+
+## Usage Instructions
+
+The script offers an interactive menu with six options:
+1. Update and upgrade system
+2. Install Docker and Docker Compose
+3. Install nvm and Node.js
+4. Install Koii CLI and create a wallet
+5. Run Docker Compose
+6. Run all steps in sequence
+
+### Important Notes
+- You may need to update your PATH when prompted
+- Use Finnie wallet to fund your newly created Koii wallet
+- Restart the terminal if you encounter path-related issues
+
+## Technologies Used
+
+- Bash scripting
+- Docker
+- Docker Compose
+- Node.js (via nvm)
+- Koii Network CLI
+
+## Reward Management
+
+To claim rewards or manage your Koii tasks, use the Koii Task CLI:
+```bash
+npx @_koii/create-task-cli@latest
+```
+
+Key commands:
+- Claim Rewards
+- Withdraw Staked Funds
+
+## Troubleshooting
+
+- Ensure all manual steps are completed
+- Restart the terminal after installing Docker and Koii CLI
+- Check Docker logs: `docker logs -f --tail 10 task_node`
+- Stop the node: `docker stop task_node`
+
+## Disclaimer
+
+⚠️ This script is under active development. Some manual intervention may be required.
+
+## License
+
+[Specify the license type, e.g., MIT, Apache 2.0]
+
+## Resources
+
+- [Koii Network Documentation](https://www.koii.network/docs)
+- [Koii Task CLI Guide](https://www.koii.network/docs/develop/command-line-tool/create-task-cli/install)
